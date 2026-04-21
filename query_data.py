@@ -1,16 +1,13 @@
 import argparse
 import os
-from langchain_community.vectorstores import Chroma
-from langchain.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 
 from config import (
     CHROMA_PATH,
     DEFAULT_K,
     DEFAULT_RELEVANCE_THRESHOLD,
-    PROMPT_TEMPLATE,
 )
-from models import get_chat_model, get_embeddings
+from rag_pipeline import answer_question
 
 load_dotenv()
 
@@ -31,30 +28,16 @@ def main():
     args = parser.parse_args()
     query_text = args.query_text
 
-    # Prepare the DB.
-    embedding_function = get_embeddings()
-    db = Chroma(
-        persist_directory=CHROMA_PATH,
-        embedding_function=embedding_function,
-    )
-
-    # Search the DB.
-    results = db.similarity_search_with_relevance_scores(query_text, k=args.k)
+    response = answer_question(query_text, k=args.k)
+    results = response["results"]
     if len(results) == 0 or results[0][1] < args.threshold:
         print("Unable to find matching results.")
         return
 
-    context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
-    prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
-    prompt = prompt_template.format(context=context_text, question=query_text)
     if args.debug:
-        print(prompt)
+        print(response["prompt"])
 
-    model = get_chat_model()
-    response_text = model.invoke(prompt).content
-
-    sources = [doc.metadata.get("source", None) for doc, _score in results]
-    formatted_response = f"Response: {response_text}\nSources: {sources}"
+    formatted_response = f"Response: {response['answer']}\nSources: {response['sources']}"
     print(formatted_response)
 
 

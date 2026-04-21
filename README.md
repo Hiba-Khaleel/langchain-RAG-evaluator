@@ -23,6 +23,7 @@ The project currently uses the Eiffel guide as sample data, but the code is orga
 ├── create_db.py               # Builds the Chroma vector database
 ├── query_data.py              # CLI for asking questions
 ├── evaluate.py                # Runs evaluation questions and writes reports
+├── app.py                     # Streamlit app for chat and evaluation review
 ├── data/                      # Source documents
 ├── chroma/                    # Generated Chroma database, ignored by git
 ├── evals/
@@ -93,6 +94,26 @@ Use `--debug` to print the full generated prompt:
 ```bash
 python query_data.py "What are contracts in Eiffel?" --debug
 ```
+
+## Run The Streamlit App
+
+Start the app:
+
+```bash
+streamlit run app.py
+```
+
+The app has two tabs:
+
+- `Chat`: ask live questions against the Chroma-backed RAG pipeline.
+- `Evaluations`: inspect saved reports from `evals/results/`.
+
+The sidebar controls:
+
+- top-k retrieval count
+- relevance threshold
+- similarity vs MMR retrieval
+- MMR fetch count
 
 ## Run Evaluation
 

@@ -5,18 +5,15 @@ from datetime import datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
-from langchain_community.vectorstores import Chroma
-from langchain.prompts import ChatPromptTemplate
 
 from config import (
-    CHROMA_PATH,
     DEFAULT_FETCH_K,
     DEFAULT_K,
     EVAL_PATH,
     EVAL_RESULTS_PATH,
-    PROMPT_TEMPLATE,
 )
-from models import get_chat_model, get_embeddings
+from models import get_chat_model
+from rag_pipeline import answer_question, load_vector_store
 
 
 def load_eval_questions(path):
@@ -42,34 +39,19 @@ def keyword_score(answer, expected_keywords):
     return len(matches) / len(expected_keywords), matches
 
 
-def retrieve_results(db, question, search_type, k, fetch_k):
-    if search_type == "similarity":
-        return db.similarity_search_with_relevance_scores(question, k=k)
-
-    docs = db.max_marginal_relevance_search(
-        question,
-        k=k,
-        fetch_k=fetch_k,
-    )
-    return [(doc, None) for doc in docs]
-
-
 def run_question(db, model, question_data, search_type, k, fetch_k):
     question = question_data["question"]
 
-    results = retrieve_results(db, question, search_type, k, fetch_k)
-
-    context_text = "\n\n---\n\n".join(
-        [doc.page_content for doc, _score in results]
+    response = answer_question(
+        question,
+        db=db,
+        model=model,
+        search_type=search_type,
+        k=k,
+        fetch_k=fetch_k,
     )
-
-    prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
-    prompt = prompt_template.format(
-        context=context_text,
-        question=question,
-    )
-
-    answer = model.invoke(prompt).content
+    results = response["results"]
+    answer = response["answer"]
 
     actual_sources = [
         doc.metadata.get("source")
@@ -133,12 +115,7 @@ def main():
 
     eval_questions = load_eval_questions(args.eval_file)
 
-    embedding_function = get_embeddings()
-    db = Chroma(
-        persist_directory=CHROMA_PATH,
-        embedding_function=embedding_function,
-    )
-
+    db = load_vector_store()
     model = get_chat_model()
 
     results = [
