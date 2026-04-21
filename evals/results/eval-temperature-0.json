@@ -1,0 +1,160 @@
+{
+  "created_at": "2026-04-20T21:39:21.725162",
+  "k": 3,
+  "search_type": "similarity",
+  "fetch_k": 15,
+  "summary": {
+    "total_questions": 5,
+    "source_hit_rate": 1.0,
+    "average_keyword_score": 0.6833333333333333
+  },
+  "results": [
+    {
+      "id": "classes-basic",
+      "question": "What is an Eiffel class?",
+      "answer": "An Eiffel class is defined by naming it and giving it features, which may include inheriting features from other classes. Classes can also redefine features inherited from other classes.",
+      "actual_sources": [
+        "data/eiffel-guide/07-classes.md",
+        "data/eiffel-guide/01-introduction.md",
+        "data/eiffel-guide/08-reference-vs-expanded-classes.md"
+      ],
+      "expected_sources": [
+        "data/eiffel-guide/07-classes.md"
+      ],
+      "source_hit": true,
+      "similarity_scores": [
+        0.7393773179348906,
+        0.7236536520569173,
+        0.7123851768518998
+      ],
+      "expected_keywords": [
+        "class",
+        "feature",
+        "create"
+      ],
+      "matched_keywords": [
+        "class",
+        "feature"
+      ],
+      "keyword_score": 0.6666666666666666
+    },
+    {
+      "id": "loops-basic",
+      "question": "How do loops work in Eiffel?",
+      "answer": "In Eiffel, loops are evaluated until the conditional becomes true rather than while the conditional is true. There are two types of loops: \"from\" loops and \"across\" loops. \"From\" loops have the syntax of initializing a variable, specifying an invariant expression, and a variant expression. The variant must decrease by at least 1 after each cycle of the loop, while the invariant remains the same. \"Across\" loops go through an iterable object and create a cursor to access the elements.",
+      "actual_sources": [
+        "data/eiffel-guide/18-loops.md",
+        "data/eiffel-guide/18-loops.md",
+        "data/eiffel-guide/18-loops.md"
+      ],
+      "expected_sources": [
+        "data/eiffel-guide/18-loops.md"
+      ],
+      "source_hit": true,
+      "similarity_scores": [
+        0.8103635639896225,
+        0.7764111131864154,
+        0.7357460352466973
+      ],
+      "expected_keywords": [
+        "from",
+        "until",
+        "loop",
+        "end"
+      ],
+      "matched_keywords": [
+        "from",
+        "until",
+        "loop"
+      ],
+      "keyword_score": 0.75
+    },
+    {
+      "id": "agents-basic",
+      "question": "What are agents in Eiffel?",
+      "answer": "Agents in Eiffel are objects that encapsulate features and allow them to be called with or without return values. They are particularly useful in event-driven programming scenarios.",
+      "actual_sources": [
+        "data/eiffel-guide/21-agents.md",
+        "data/eiffel-guide/01-introduction.md",
+        "data/eiffel-guide/21-agents.md"
+      ],
+      "expected_sources": [
+        "data/eiffel-guide/21-agents.md"
+      ],
+      "source_hit": true,
+      "similarity_scores": [
+        0.742995284160425,
+        0.6679085841786296,
+        0.6637547065984593
+      ],
+      "expected_keywords": [
+        "agent",
+        "routine",
+        "argument"
+      ],
+      "matched_keywords": [
+        "agent"
+      ],
+      "keyword_score": 0.3333333333333333
+    },
+    {
+      "id": "contracts-basic",
+      "question": "What are contracts in Eiffel?",
+      "answer": "Contracts in Eiffel are a concept used to avoid bugs during development. They consist of three types of assurance elements: preconditions (used in features), postconditions (used in features), and class invariants. Preconditions are defined using the require keyword, postconditions are defined using the ensure keyword, and class invariants are used to ensure certain conditions hold true for a class.",
+      "actual_sources": [
+        "data/eiffel-guide/19-contracts.md",
+        "data/eiffel-guide/01-introduction.md",
+        "data/eiffel-guide/02-some-basics.md"
+      ],
+      "expected_sources": [
+        "data/eiffel-guide/19-contracts.md"
+      ],
+      "source_hit": true,
+      "similarity_scores": [
+        0.7804975176013731,
+        0.7052334433893699,
+        0.7036433945990035
+      ],
+      "expected_keywords": [
+        "require",
+        "ensure",
+        "invariant"
+      ],
+      "matched_keywords": [
+        "require",
+        "ensure",
+        "invariant"
+      ],
+      "keyword_score": 1.0
+    },
+    {
+      "id": "inheritance-basic",
+      "question": "How does multiple inheritance work in Eiffel?",
+      "answer": "In Eiffel, multiple inheritance works by allowing a class to inherit features from multiple parent classes. However, if there are clashes where two parent classes have features with the same name, the class inheriting from them must rename or undefine one of the features to resolve the conflict. This can be done using the rename and undefine keywords in the class definition.",
+      "actual_sources": [
+        "data/eiffel-guide/14-multiple-inheritance.md",
+        "data/eiffel-guide/14-multiple-inheritance.md",
+        "data/eiffel-guide/07-classes.md"
+      ],
+      "expected_sources": [
+        "data/eiffel-guide/14-multiple-inheritance.md"
+      ],
+      "source_hit": true,
+      "similarity_scores": [
+        0.7883431923409949,
+        0.7607983003925417,
+        0.7362265437868902
+      ],
+      "expected_keywords": [
+        "inherit",
+        "rename",
+        "select"
+      ],
+      "matched_keywords": [
+        "inherit",
+        "rename"
+      ],
+      "keyword_score": 0.6666666666666666
+    }
+  ]
+}

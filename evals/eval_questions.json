@@ -1,0 +1,38 @@
+[
+  {
+    "id": "classes-basic",
+    "question": "What is an Eiffel class?",
+    "expected_sources": ["data/eiffel-guide/07-classes.md"],
+    "expected_keywords": ["class", "feature", "create"]
+  },
+  {
+    "id": "loops-basic",
+    "question": "How do loops work in Eiffel?",
+    "expected_sources": ["data/eiffel-guide/18-loops.md"],
+    "expected_keywords": ["from", "until", "loop", "end"]
+  },
+  {
+    "id": "agents-basic",
+    "question": "What are agents in Eiffel?",
+    "expected_sources": ["data/eiffel-guide/21-agents.md"],
+    "expected_keywords": ["agent", "feature", "call", "item"]
+  },
+  {
+    "id": "agents-arguments",
+    "question": "How do agents pass arguments in Eiffel?",
+    "expected_sources": ["data/eiffel-guide/21-agents.md"],
+    "expected_keywords": ["agent", "argument", "tuple", "call"]
+  },
+  {
+    "id": "contracts-basic",
+    "question": "What are contracts in Eiffel?",
+    "expected_sources": ["data/eiffel-guide/19-contracts.md"],
+    "expected_keywords": ["require", "ensure", "invariant"]
+  },
+  {
+    "id": "inheritance-basic",
+    "question": "How does multiple inheritance work in Eiffel?",
+    "expected_sources": ["data/eiffel-guide/14-multiple-inheritance.md"],
+    "expected_keywords": ["inherit", "rename", "select"]
+  }
+]
