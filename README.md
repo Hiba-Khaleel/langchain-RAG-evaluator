@@ -219,9 +219,4 @@ Failed to send telemetry event ...
 
 These warnings do not mean the evaluation failed. If the summary is printed and the JSON report is written, the run completed.
 
-## Next Improvements
 
-- Add more evaluation questions before making more optimization decisions.
-- Add manual pass/fail review for answer correctness.
-- Consider Markdown-aware chunking once the eval set is larger.
-- Consider LLM-as-judge evaluation for groundedness and correctness.
